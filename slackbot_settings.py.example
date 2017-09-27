@@ -1,0 +1,7 @@
+API_TOKEN = "xoxb-130141859984-FBAq5QD09fvZib048ijJU1yY"
+DEFAULT_REPLY = "STFU. Be normal."
+PLUGINS = [
+  'slackbot.plugins',
+  'cryptobot',
+]
+
