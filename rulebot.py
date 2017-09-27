@@ -8,17 +8,16 @@ REACTION = 'discoparrot'
 
 @respond_to('help', re.IGNORECASE)
 def help(message):
-    message.reply("")
     cmds = [
-            "!addrule <rule>",
-            "!deleterule <number>",
-            "!rules",
+            "addrule <rule>",
+            "deleterule <number>",
+            "rules",
             ]
     message.reply('\n'.join(cmds))
     message.react(REACTION)
 
 
-@respond_to('!addrule ([a-zA-Z0-9 \'#!]*)')
+@respond_to('addrule ([a-zA-Z0-9 \'#!]*)')
 def add(message, rule):
     with open(RULEPATH, 'a') as rulefile:
         rulefile.write("{}\n".format(rule))
@@ -26,12 +25,12 @@ def add(message, rule):
     message.react(REACTION)
    
 
-@respond_to('!deleterule ([0-9]*)')
+@respond_to('deleterule ([0-9]*)')
 def delete(message, num):
     rules = _get_rules()
     output = []
-    for num, rule in enumerate(rules, 1):
-        if num != int(num):
+    for idx, rule in enumerate(rules, 1):
+        if idx != int(num):
             output.append(rule)
         else:
             message.reply("Deleting rule {}: {}".format(num, rule))
@@ -39,7 +38,7 @@ def delete(message, num):
         rulesfile.writelines(output)
 
 
-@respond_to('!rules')
+@respond_to('rules')
 def rules(message):
     rules = _get_rules()
     output = ["0: You do not talk about #opsec"]
