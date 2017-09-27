@@ -5,13 +5,13 @@ import re
 RULEPATH = 'rules.txt'
 REACTION = 'discoparrot'
 
-
 @respond_to('help', re.IGNORECASE)
 def help(message):
     cmds = [
             "addrule <rule>",
             "deleterule <number>",
             "rules",
+            "Complaint? Make a PR: https://github.com/antitree/rulebot",
             ]
     message.reply('\n'.join(cmds))
     message.react(REACTION)
@@ -44,7 +44,7 @@ def rules(message):
     output = ["0: You do not talk about #opsec"]
     for num, rule in enumerate(rules, 1):
         output.append('{}: {}'.format(num, rule))
-    message.reply("\n".join(output))
+    message.send("\n".join(output))
 
 
 def _get_rules():
