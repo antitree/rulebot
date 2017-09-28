@@ -17,7 +17,7 @@ def help(message):
     message.react(REACTION)
 
 
-@respond_to('addrule ([a-zA-Z0-9 \'#!]*)')
+@respond_to('addrule ([a-zA-Z0-9 \'\=\\\._#!]*)')
 def add(message, rule):
     with open(RULEPATH, 'a') as rulefile:
         rulefile.write("{}\n".format(rule))
